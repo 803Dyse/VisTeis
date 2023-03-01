@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private Cell cells;
+    private Cell[][] cells;
+    private int raws;
+    private int columns;
 
     /**
      * Devolve a cela que está nunha fila e columna determinadas.
@@ -23,7 +25,7 @@ public class Game {
      * @return 
      */
     public Cell getCell(int raw, int column) {
-        return null;
+        return this.cells[raw][column];
     }
 
     /**

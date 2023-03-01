@@ -15,6 +15,9 @@ public class Cell {
     private int state;
     private int raw;
     private int column;
+    public static final int STATE_HIDDEN = 1;
+    public static final int STATE_CHECKED = 2;
+    public static final int STATE_SHOWN = 3;
 
     /**
      * Siempre que crees un objeto de cell, aqui tienes la grade para crear las
@@ -23,7 +26,9 @@ public class Cell {
      * @param raw
      * @param column
      */
-    public Cell(int raw, int column) {
+    public Cell(boolean mined, int state, int raw, int column) {
+        this.mined = mined;
+        this.state = state;
         this.raw = raw;
         this.column = column;
     }

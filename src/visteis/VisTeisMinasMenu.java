@@ -1,13 +1,12 @@
+package visteis;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package visteis;
-
 /**
  *
- * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
- * Parada de la Fuente
+ * @author Bilo Alejandro Martins Gonzalez
  */
 public class VisTeisMinasMenu {
 
@@ -17,14 +16,19 @@ public class VisTeisMinasMenu {
 
     /**
      * Saca por pantalla el panel de las minas.
-     *
-     * @param game
      */
     private void showPanel(Game game) {
+        int y = 0;
+
         System.out.println("[ *** Estás xogando ao VisTeis Minas *** ]");
         System.out.println("        --- Estado do panel --- ");
         System.out.println("");
-        System.out.println("");
+
+        for (int z = 0; z < 6; z++) {
+            System.out.println(z + "");
+            System.out.println("-");
+
+        }
     }
 
     /**
@@ -40,6 +44,6 @@ public class VisTeisMinasMenu {
     public void startNewGame() {
         Game game = new Game(RAWS, COLUMNS, MINES);
         showPanel(game);
-
     }
+
 }

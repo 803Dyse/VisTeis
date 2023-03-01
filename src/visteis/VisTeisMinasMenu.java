@@ -1,9 +1,5 @@
 package visteis;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author Bilo Alejandro Martins Gonzalez
@@ -18,17 +14,20 @@ public class VisTeisMinasMenu {
      * Saca por pantalla el panel de las minas.
      */
     private void showPanel(Game game) {
-        int y = 0;
 
         System.out.println("[ *** Estás xogando ao VisTeis Minas *** ]");
-        System.out.println("        --- Estado do panel --- ");
+        System.out.println("         --- Estado do panel --- ");
         System.out.println("");
 
-        for (int z = 0; z < 6; z++) {
-            System.out.println(z + "");
+        
+        //Y = VERTICAL
+        //X = HORIZONTAL
+        for (int y = 0; y < 6; y++) {
+            System.out.println(y + "");
             System.out.println("-");
-
+            System.out.println(y+ "");
         }
+        System.out.println();
     }
 
     /**

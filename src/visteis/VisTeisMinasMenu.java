@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package visteis;
 
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class VisTeisMinasMenu {
 
@@ -15,6 +17,8 @@ public class VisTeisMinasMenu {
 
     /**
      * Saca por pantalla el panel de las minas.
+     *
+     * @param game
      */
     private void showPanel(Game game) {
         System.out.println("[ *** Estás xogando ao VisTeis Minas *** ]");

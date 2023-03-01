@@ -1,13 +1,15 @@
-
-import java.util.ArrayList;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package visteis;
+
+import java.util.ArrayList;
+
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class Game {
 
@@ -15,12 +17,16 @@ public class Game {
 
     /**
      * Devolve a cela que está nunha fila e columna determinadas.
+     * 
+     * @param raw
+     * @param column
+     * @return 
      */
     public Cell getCell(int raw, int column) {
         return null;
     }
 
-        /**
+    /**
      * Crea unha nova partida.Inicializará a matriz de celas e usará o método
      * anterior para repartir as minas.
      *
@@ -31,7 +37,7 @@ public class Game {
     public Game(int raws, int columns, int mines) {
 
     }
-    
+
     /**
      * Obtén a lista de celas adxacentes da cela que se recibe como parámetro.
      *
@@ -49,16 +55,16 @@ public class Game {
      * @return
      */
     public int getAdjacentMines(Cell cell) {
-
         return 0;
     }
 
     /**
      * Destapa unha cela, e no caso de que o número de minas adxacentes sexa
      * cero, destapa todas as celas adxacentes que non estean destapadas. Tamén
-     * fará uso do método getAdjacentCells() e é importante destacar que, pola
-     * súa propia definición, é un método recursivo, xa que se chama a si mesmo
-     * no seu código.
+ fará uso do método getAdjacentCells() e é importante destacar que, pola
+ súa propia definición, é un método recursivo, xa que se chama a si mesmo
+ no seu código.T
+     * @param cell     
      */
     public void openCell(Cell cell) {
 

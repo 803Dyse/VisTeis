@@ -1,13 +1,13 @@
-
-import java.util.ArrayList;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package visteis;
+
 /**
  *
- * @author Bilo Alejandro Martins Gonzalez
+ * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
+ * Parada de la Fuente
  */
 public class Cell {
 
@@ -19,6 +19,9 @@ public class Cell {
     /**
      * Siempre que crees un objeto de cell, aqui tienes la grade para crear las
      * celulas, esto seria el atributo de game.
+     *
+     * @param raw
+     * @param column
      */
     public Cell(int raw, int column) {
         this.raw = raw;
@@ -88,6 +91,5 @@ public class Cell {
     public void setColumn(int column) {
         this.column = column;
     }
-
 
 }

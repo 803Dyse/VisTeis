@@ -20,6 +20,18 @@ public class Game {
         return null;
     }
 
+        /**
+     * Crea unha nova partida.Inicializará a matriz de celas e usará o método
+     * anterior para repartir as minas.
+     *
+     * @param raws
+     * @param columns
+     * @param mines
+     */
+    public Game(int raws, int columns, int mines) {
+
+    }
+    
     /**
      * Obtén a lista de celas adxacentes da cela que se recibe como parámetro.
      *
@@ -76,18 +88,6 @@ public class Game {
      *
      */
     private void fillMines(int mines) {
-
-    }
-
-    /**
-     * Crea unha nova partida.Inicializará a matriz de celas e usará o método
-     * anterior para repartir as minas.
-     *
-     * @param raws
-     * @param columns
-     * @param mines
-     */
-    public Game(int raws, int columns, int mines) {
 
     }
 }

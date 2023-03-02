@@ -144,8 +144,7 @@ public class Game {
         int minesThrow = 0;
         while (minesThrow < mines) {
             int cellRandom = (new Random()).nextInt(raws * columns);
-            Cell cell = cells[cellRandom / columns][cellRandom % raws];
-//No estoy seguro si esto esta bien, asi que dejo señalizado !!!!!
+            Cell cell = cells[cellRandom / columns][cellRandom % columns];
             //si la celda NO esta minada...
             if (!cell.isMined()) {
                 //decimos que ahora si, para crear el efecto encadenado de abrir

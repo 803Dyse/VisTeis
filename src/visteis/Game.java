@@ -50,6 +50,7 @@ public class Game {
         for (Cell adjacentCell : adjacentCells) {
             
         }
+        return adjacentCells;
     }
 
     /**

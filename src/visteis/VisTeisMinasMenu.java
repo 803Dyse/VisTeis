@@ -40,6 +40,9 @@ public class VisTeisMinasMenu {
                 String msgCell;
                 Cell cell = game.getCell(t, m);
                 
+                
+                //Esta parte falta por terminar el case 3, porque los demas metodos
+                //todavia no acabaron de implementarse.   º             !!!!!
                 switch(cell.getState()){
                     case 1:
                         msgCell = " ";

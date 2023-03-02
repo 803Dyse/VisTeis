@@ -5,6 +5,7 @@
 package visteis;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -19,10 +20,10 @@ public class Game {
 
     /**
      * Devolve a cela que está nunha fila e columna determinadas.
-     * 
+     *
      * @param raw
      * @param column
-     * @return 
+     * @return
      */
     public Cell getCell(int raw, int column) {
         return this.cells[raw][column];
@@ -37,16 +38,18 @@ public class Game {
      * @param mines
      */
     public Game(int raws, int columns, int mines) {
-
+        
     }
 
     /**
      * Obtén a lista de celas adxacentes da cela que se recibe como parámetro.
      *
      */
-    private ArrayList<Cell> getAdjacentCells(Cell cell) {
-
-        return null;
+    public ArrayList<Cell> getAdjacentCells(Cell cell) {
+        ArrayList<Cell> adjacentCells = new ArrayList<>();
+        for (Cell adjacentCell : adjacentCells) {
+            
+        }
     }
 
     /**
@@ -57,19 +60,37 @@ public class Game {
      * @return
      */
     public int getAdjacentMines(Cell cell) {
-        return 0;
+        //CAMBIA EL NOMBRE DE ESTA VAR DESPUES                          !!!!!!!!
+        int minaCell = 0;
+        for (Cell adjacent : getAdjacentCells(cell)) {
+            if (adjacent.isMined()) {
+                minaCell++;
+            }
+        }
+        return minaCell;
     }
 
     /**
      * Destapa unha cela, e no caso de que o número de minas adxacentes sexa
      * cero, destapa todas as celas adxacentes que non estean destapadas. Tamén
- fará uso do método getAdjacentCells() e é importante destacar que, pola
- súa propia definición, é un método recursivo, xa que se chama a si mesmo
- no seu código.T
-     * @param cell     
+     * fará uso do método getAdjacentCells() e é importante destacar que, pola
+     * súa propia definición, é un método recursivo, xa que se chama a si mesmo
+     * no seu código.T
+     *
+     * @param cell
      */
     public void openCell(Cell cell) {
-
+        //3 es el estado para cuando está destapada, seteamos esto como abierto
+        cell.setState(3);
+        if (getAdjacentMines(cell) == 0) {
+            for (Cell adjacentCells : getAdjacentCells(cell)) {
+                //Si no esta destapada...
+                if (adjacentCells.getState() != 3) {
+                    // PUES QUE SE ABRA COÑO JAJAJAJAJAJA
+                    openCell(adjacentCells);
+                }
+            }
+        }
     }
 
     /**
@@ -77,7 +98,14 @@ public class Game {
      * para mostrarlle en que celas estaban as minas.
      */
     public void openAllMines() {
-
+        for (int i = 0; i < raws; i++) {
+            for (int j = 0; j < columns; j++) {
+                Cell cell = getCell(i, j);
+                if (cell.isMined()) {
+                    cell.setState(3);
+                }
+            }
+        }
     }
 
     /**
@@ -87,7 +115,23 @@ public class Game {
      * @return
      */
     public boolean checkCellsToOpen() {
-        return false;
+        //tuve que crear al final este boolean porque me di cuenta de que no 
+        //sirve con returnear false, ya que todo eso se tiene que guarda para
+        //que el booleano te indique que cojones es verdadero o falso, pues
+        //aqui lo que hice fue crear un booleano que se retorna al final 
+        //despues de recorrer todo el mapa del juego para decir las celdas que 
+        //faltan por abrir, fumada de porros total, pero funciona, amen.
+        boolean mined = false;
+        for (int i = 0; i < raws; i++) {
+            for (int j = 0; j < columns; j++) {
+                Cell cell = getCell(i, j);
+                if (!cell.isMined() && cell.getState() != 3) {
+                    mined = true;
+                }
+
+            }
+        }
+        return mined; //PD: No sabéis la puta locura que fué llegar a esto JAJA
     }
 
     /**
@@ -96,6 +140,18 @@ public class Game {
      *
      */
     private void fillMines(int mines) {
-
+        int minesThrow = 0;
+        while (minesThrow < mines) {
+            int cellRandom = (new Random()).nextInt(raws * columns);
+            Cell cell = cells[cellRandom / columns][cellRandom % raws];
+//No estoy seguro si esto esta bien, asi que dejo señalizado !!!!!
+            //si la celda NO esta minada...
+            if (!cell.isMined()) {
+                //decimos que ahora si, para crear el efecto encadenado de abrir
+                //las celdas
+                cell.setMined(true);
+                minesThrow++;
+            }
+        }
     }
 }

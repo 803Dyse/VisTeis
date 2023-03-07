@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package visteis;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Esta clase es la que inicia la partida utilizando los metodos y los objetos
+ * de cell como atributos de clase, que generan la interfaz.
  *
  * @author Alejandro Martínez Domínguez, Bilo Alejandro Martins González y Raúl
  * Parada de la Fuente
@@ -19,7 +17,8 @@ public class Game {
     private int columns;
 
     /**
-     * Devolve a cela que está nunha fila e columna determinadas.
+     * Devuelve la celda seleccionada por coordenadas, que en este caso son raw
+     * y column.
      *
      * @param raw
      * @param column
@@ -30,25 +29,48 @@ public class Game {
     }
 
     /**
-     * Crea unha nova partida.Inicializará a matriz de celas e usará o método
-     * anterior para repartir as minas.
+     * Este es el constructor de game, inicia una nueva partida y iniciliza el
+     * array de celdas(cells).
      *
      * @param raws
      * @param columns
      * @param mines
      */
     public Game(int raws, int columns, int mines) {
-        
+        this.raws = raws;
+        this.columns = columns;
+        this.cells = new Cell[raws][columns];
+        for (int i = 0; i < raws; i++) {
+            for (int j = 0; j < columns; j++) {
+                this.cells[i][j] = new Cell(false, 1, i, j);
+            }
+        }
+        fillMines(mines);
     }
 
     /**
-     * Obtén a lista de celas adxacentes da cela que se recibe como parámetro.
+     * Este método recorre las celdas adyacentes de la cela que tenemos como
+     * parametro, se utilizará como método auxiliar para otros métodos.
      *
+     * @param cell Esta cell es la que se selecciona, las adyacentes apareceran
+     * alrededor de esta celda.
+     * @return
      */
     public ArrayList<Cell> getAdjacentCells(Cell cell) {
         ArrayList<Cell> adjacentCells = new ArrayList<>();
-        for (Cell adjacentCell : adjacentCells) {
-            
+
+        int minI = (cell.getRaw() == 0) ? 0 : (cell.getRaw() - 1);
+
+        int maxI = (cell.getRaw() == this.raws - 1) ? cell.getRaw() : (cell.getRaw() + 1);
+
+        int minJ = (cell.getColumn() == 0) ? 0 : (cell.getColumn() - 1);
+
+        int maxJ = (cell.getColumn() == this.columns - 1) ? cell.getColumn() : (cell.getColumn() + 1);
+
+        for (int i = minI; i <= maxI; i++) {
+            for (int j = minJ; j <= maxJ; j++) {
+                adjacentCells.add(this.cells[i][j]);
+            }
         }
         return adjacentCells;
     }
@@ -61,14 +83,13 @@ public class Game {
      * @return
      */
     public int getAdjacentMines(Cell cell) {
-        //CAMBIA EL NOMBRE DE ESTA VAR DESPUES                          !!!!!!!!
-        int minaCell = 0;
-        for (Cell adjacent : getAdjacentCells(cell)) {
-            if (adjacent.isMined()) {
-                minaCell++;
+        int numMines = 0;
+        for (Cell adjCell : getAdjacentCells(cell)) {
+            if (adjCell.isMined()) {
+                numMines++;
             }
         }
-        return minaCell;
+        return numMines;
     }
 
     /**
@@ -84,11 +105,11 @@ public class Game {
         //3 es el estado para cuando está destapada, seteamos esto como abierto
         cell.setState(3);
         if (getAdjacentMines(cell) == 0) {
-            for (Cell adjacentCells : getAdjacentCells(cell)) {
+            for (Cell adjacentCell : getAdjacentCells(cell)) {
                 //Si no esta destapada...
-                if (adjacentCells.getState() != 3) {
+                if (adjacentCell.getState() != 3) {
                     // PUES QUE SE ABRA COÑO JAJAJAJAJAJA
-                    openCell(adjacentCells);
+                    openCell(adjacentCell);
                 }
             }
         }
@@ -123,8 +144,8 @@ public class Game {
         //despues de recorrer todo el mapa del juego para decir las celdas que 
         //faltan por abrir, fumada de porros total, pero funciona, amen.
         boolean mined = false;
-        for (int i = 0; i < raws; i++) {
-            for (int j = 0; j < columns; j++) {
+        for (int i = 0; i < this.raws && !mined; i++) {
+            for (int j = 0; j < this.columns && !mined; j++) {
                 Cell cell = getCell(i, j);
                 if (!cell.isMined() && cell.getState() != 3) {
                     mined = true;

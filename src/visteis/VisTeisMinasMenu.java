@@ -51,7 +51,7 @@ public class VisTeisMinasMenu {
                         msgCell = "!";
                         break;
                     default:
-                        if (cell.isMined()) {
+                        if (cell.isMined() ) {
                             msgCell = "*";
                             break;
                         }
@@ -124,22 +124,20 @@ public class VisTeisMinasMenu {
                                     break; 
                             }
 
-                            if (cell.isMined() && cell.getState() != 2) {
+                            if (cell.isMined() && cell.getState() != 3) {
                                 game.openAllMines();
                                 showPanel(game);
                                 System.out.println("Perdiste. La partida se acabó.");
                                 isGameOver = true;
-                                break;
                             }
                             if (option == 'a') {
                                 game.openCell(cell);
                             }
                             
-                            game.openCell(cell);
+//                            game.openCell(cell);
                             if (!game.checkCellsToOpen()) {
                                 showPanel(game);
                                 System.out.println("Enhorabuena, ganaste la partida.");
-                                isGameOver = true;
                             }
                         }
                         break;

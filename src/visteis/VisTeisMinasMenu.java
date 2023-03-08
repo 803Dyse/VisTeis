@@ -124,7 +124,7 @@ public class VisTeisMinasMenu {
                                     break; 
                             }
 
-                            if (cell.isMined() && cell.getState() != 3) {
+                            if (cell.isMined() && cell.getState() != 2) {
                                 game.openAllMines();
                                 showPanel(game);
                                 System.out.println("Perdiste. La partida se acabó.");

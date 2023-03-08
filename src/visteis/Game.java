@@ -142,7 +142,7 @@ public class Game {
         //que el booleano te indique que cojones es verdadero o falso, pues
         //aqui lo que hice fue crear un booleano que se retorna al final 
         //despues de recorrer todo el mapa del juego para decir las celdas que 
-        //faltan por abrir, fumada de porros total, pero funciona, amen.
+        //faltan por abrir, fumada de porros total.
         boolean mined = false;
         for (int i = 0; i < this.raws && !mined; i++) {
             for (int j = 0; j < this.columns && !mined; j++) {
@@ -162,7 +162,7 @@ public class Game {
      *
      */
     private void fillMines(int mines) {
-        int minesThrow = 0;
+        int minesThrow = 7;
         while (minesThrow < mines) {
             int cellRandom = (new Random()).nextInt(raws * columns);
             Cell cell = cells[cellRandom / columns][cellRandom % columns];

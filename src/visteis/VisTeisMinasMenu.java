@@ -81,7 +81,7 @@ public class VisTeisMinasMenu {
 
         do {
             boolean isGameOver = false;
-            Game game = new Game(6, 6, 8);
+            Game game = new Game(6, 6, 8); 
             do {
                 int raw, column;
                 Cell cell;
@@ -121,16 +121,20 @@ public class VisTeisMinasMenu {
                                     break;
                                 case 'd':
                                     cell.setState(1);
-                                    break;
+                                    break; 
                             }
 
-                            if (cell.isMined()) {
+                            if (cell.isMined() && cell.getState() != 2) {
                                 game.openAllMines();
                                 showPanel(game);
                                 System.out.println("Perdiste. La partida se acabó.");
                                 isGameOver = true;
                                 break;
                             }
+                            if (option == 'a') {
+                                game.openCell(cell);
+                            }
+                            
                             game.openCell(cell);
                             if (!game.checkCellsToOpen()) {
                                 showPanel(game);

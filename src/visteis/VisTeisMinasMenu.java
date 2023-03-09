@@ -157,6 +157,7 @@ public class VisTeisMinasMenu {
                             game.openCell(cell);
                         }
                         if (!game.checkCellsToOpen()) {
+                            game.openAllMines();
                             showPanel(game);
                             System.out.println("Enhorabuena, ganaste la partida.");
                         }
@@ -168,6 +169,8 @@ public class VisTeisMinasMenu {
             }
             if (isGameOver) {
                 game.checkCellsToOpen();
+                game.openAllMines();
+                showPanel(game);
                 System.out.println("Has perdido");
                 System.out.println("Jugar otra vez? (s / n)");
                 char restartr = sc.nextLine().charAt(0);
@@ -178,8 +181,8 @@ public class VisTeisMinasMenu {
                 }
             }
             if (!game.checkCellsToOpen()) {
-                game.checkCellsToOpen();
-
+                game.openAllMines();
+                showPanel(game);
                 System.out.println("Has ganado");
                 System.out.println("Jugar otra vez? (s / n)");
                 char restartr = sc.nextLine().charAt(0);

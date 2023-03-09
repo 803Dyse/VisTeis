@@ -162,7 +162,7 @@ public class Game {
      *
      */
     private void fillMines(int mines) {
-        int minesThrow = 0;
+        int minesThrow = 6;
         while (minesThrow < mines) {
             int cellRandom = (new Random()).nextInt(raws * columns);
             Cell cell = cells[cellRandom / columns][cellRandom % columns];

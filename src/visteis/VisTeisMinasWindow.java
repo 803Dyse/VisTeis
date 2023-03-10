@@ -4,7 +4,13 @@
  */
 package visteis;
 
+import javax.swing.JOptionPane;
+
 /**
+ * Nesta clase engadiremos as propiedades "game" (de clase Game, que fará
+ * referencia ao obxecto xogo que mantén a partida) e "cellButtons" (que será un
+ * array bidimensional de JToogleButton, e que usaremos para almacenar as
+ * referencias aos obxectos JToogleButton que forman o panel do xogo)
  *
  * @author Bilo Alejandro Martins Gonzalez
  */
@@ -21,8 +27,6 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
      * Baixo: Matriz de 6*6 celas, con 8 minas. Medio: Matriz de 8*8 celas, con
      * 20 minas. Alto: Matriz de 10*10 celas, con 40 minas.
      */
-    
-    
     /**
      * Mostra ao usuario un diálogo para que seleccione o nivel de xogo, crea un
      * novo obxecto Game e rexenera o panel do xogo co unha nova matriz de
@@ -40,6 +44,13 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
      *
      */
     public void startNewGame() {
+        /**
+         * int option es un numerador que necesitamos para poder controlar los 3
+         * botones segun la accion del usuario para elegir una opcion.
+         */
+        String[] selectGameMode = {"Dificil", "Medio", "Facil"};
+        int option = JOptionPane.showOptionDialog(this, "Selecciona una opcion", "Menu de opciones", WIDTH, HEIGHT, null, selectGameMode, EXIT_ON_CLOSE);
+        
     }
 
     /**
@@ -121,7 +132,30 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        barraMenu = new javax.swing.JMenuBar();
+        ficheiro = new javax.swing.JMenu();
+        nuevaPartida = new javax.swing.JMenuItem();
+        Salir = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+
+        ficheiro.setText("Ficheiro");
+
+        nuevaPartida.setText("Nueva Partida");
+        ficheiro.add(nuevaPartida);
+
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+        ficheiro.add(Salir);
+
+        barraMenu.add(ficheiro);
+
+        setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,11 +165,15 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 275, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalirActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -173,5 +211,9 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Salir;
+    private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JMenu ficheiro;
+    private javax.swing.JMenuItem nuevaPartida;
     // End of variables declaration//GEN-END:variables
 }

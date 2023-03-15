@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -100,7 +101,6 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
             }
         }
         pack();
-        JMenuBar jMenuBar = new JMenuBar();
     }
 
     /**
@@ -108,12 +108,24 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
      * destapadas e mostra neles unha mina (unha imaxe que se almacena na mesma
      * carpeta que as clases), ou o número de minas adxacentes.
      */
-    /**
-     * Actualiza no panel do xogo os JToogleButtons das celas que están
-     * destapadas e mostra neles unha mina (unha imaxe que se almacena na mesma
-     * carpeta que as clases), ou o número de minas adxacentes.
-     */
     private void updatePanel() {
+        for (int i = 0; i < game.getRaws(); i++) {
+            for (int j = 0; j < game.getColumns(); j++) {
+                Cell cell = game.getCell(i, j);
+                JToggleButton cellButton = cellsBTN[i][j];
+
+                if (cell.getState() == 3) {
+                    cellButton.setEnabled(false);
+                    //Si esta minada, indicamos que hay una bomba, para eso
+                    //cambiaremos el boton y setearemos un icon
+                    if (cell.isMined()) {
+                        cellButton.setIcon(new ImageIcon("src/images/bomba.jpg"));
+                    } else {
+                        cellButton.setText(String.valueOf(this.game.getAdjacentMines(cell)));
+                    }
+                }
+            }
+        }
     }
 
     /**

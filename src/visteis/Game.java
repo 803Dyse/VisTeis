@@ -175,4 +175,21 @@ public class Game {
             }
         }
     }
+
+    public int getRaws() {
+        return raws;
+    }
+
+    public void setRaws(int raws) {
+        this.raws = raws;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+    
 }

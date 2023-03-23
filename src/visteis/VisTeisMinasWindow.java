@@ -27,7 +27,7 @@ import javax.swing.JToggleButton;
 public class VisTeisMinasWindow extends javax.swing.JFrame {
 
     private Game game;
-    private JPanel panel;
+    private JPanel panel = new JPanel();
     private JToggleButton[][] cellsBTN;
 
     /**
@@ -73,10 +73,13 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
         switch (option) {
             case 0:
                 game = new Game(6, 6, 8);//EASY MODE
+                break;
             case 1:
                 game = new Game(8, 8, 20);//MEDIUM MODE
+                break;
             case 2:
                 game = new Game(10, 10, 40);//HARD MODE
+                break;
         }
         panel.removeAll();
         panel.setLayout(new GridLayout(game.getRaws(), game.getColumns()));
@@ -114,7 +117,7 @@ public class VisTeisMinasWindow extends javax.swing.JFrame {
                 Cell cell = game.getCell(i, j);
                 JToggleButton cellButton = cellsBTN[i][j];
 
-                if (cell.getState() == 3) {
+                if (cell.getState() != 3) {
                     cellButton.setEnabled(false);
                     //Si esta minada, indicamos que hay una bomba, para eso
                     //cambiaremos el boton y setearemos un icon
